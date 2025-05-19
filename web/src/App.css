@@ -1,0 +1,328 @@
+.app-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+  overflow: hidden;
+ 
+}
+
+.app-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+ 
+}
+
+.background-elements {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+}
+
+.circle-1 {
+  width: 500px;
+  height: 500px;
+  bottom: -200px;
+  left: -100px;
+  background: rgba(29, 53, 87, 0.15);
+  animation: drift 25s infinite alternate ease-in-out;
+  opacity: 0.5;
+}
+
+.circle-2 {
+  width: 300px;
+  height: 300px;
+  top: -100px;
+  right: 10%;
+  background: rgba(29, 53, 87, 0.1);
+  animation: drift 20s infinite alternate-reverse ease-in-out;
+  opacity: 0.4;
+}
+
+.circle-3 {
+  display: none;
+}
+
+@keyframes drift {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(40px, 30px);
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 80px 0 0 80px;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
+.character-selector-top {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 50px;
+  position: relative;
+  animation: fadeIn 0.8s ease;
+}
+
+.character-selector-top::after {
+  display: none;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.multichar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  max-height: 76vh;
+  padding-right: 25px;
+  padding-bottom: 25px;
+  width: 450px;
+}
+
+.multichar::-webkit-scrollbar {
+  width: 3px;
+}
+
+.multichar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 3px;
+}
+
+.multichar::-webkit-scrollbar-thumb {
+  background: rgba(66, 135, 245, 0.3);
+  border-radius: 3px;
+}
+
+.character-card {
+  width: 100%;
+  background: rgba(10, 14, 20, 0.85);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  animation: slideIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  opacity: 0;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(20, 30, 50, 0.6);
+  position: relative;
+}
+
+.character-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(30, 50, 90, 0.05), transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.character-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  border-color: rgba(78, 136, 235, 0.4);
+  background: rgba(12, 16, 24, 0.9);
+}
+
+@keyframes slideIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.character-card:nth-child(1) { animation-delay: 0.1s; }
+.character-card:nth-child(2) { animation-delay: 0.2s; }
+.character-card:nth-child(3) { animation-delay: 0.3s; }
+
+.character-card-header {
+  padding: 16px;
+  background: rgba(8, 12, 18, 0.95);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(30, 50, 90, 0.3);
+  position: relative;
+  z-index: 2;
+}
+
+.character-card-header::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 30%;
+  height: 1px;
+  background: linear-gradient(to right, rgba(78, 136, 235, 0.8), transparent);
+}
+
+.character-card-content {
+  padding: 18px;
+  position: relative;
+  z-index: 2;
+}
+
+.identifier-badge {
+  background: rgba(78, 136, 235, 0.15) !important;
+  color: rgba(144, 184, 255, 0.95) !important;
+  border: 1px solid rgba(78, 136, 235, 0.2) !important;
+  font-size: 10px !important;
+  font-weight: 500 !important;
+  padding: 4px 10px !important;
+  letter-spacing: 0.3px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.character-card-charinfo {
+  background: rgba(13, 16, 23, 0.85);
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(20, 30, 50, 0.6);
+  position: relative;
+}
+
+.character-card-charinfo::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(30, 50, 90, 0.05), transparent);
+  pointer-events: none;
+}
+
+.character-card-charinfo:hover {
+  background: rgba(16, 20, 30, 0.95);
+  border-color: rgba(78, 136, 235, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+}
+
+.info-card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  height: 44px;
+  background: rgba(10, 12, 20, 0.95);
+  color: #78a6f0;
+  position: relative;
+  overflow: hidden;
+}
+
+.info-card-icon::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(78, 136, 235, 0.15), transparent 70%);
+}
+
+.info-text {
+  padding: 12px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.92);
+  letter-spacing: 0.2px;
+  flex: 1;
+}
+
+.character-card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+/* 创建角色卡片 */
+.create-card {
+  background: rgba(10, 14, 20, 0.7);
+  border: 1px dashed rgba(78, 136, 235, 0.25);
+}
+
+.create-card:hover {
+  border-color: rgba(78, 136, 235, 0.4);
+  background: rgba(12, 16, 24, 0.85);
+}
+
+.create-card-content {
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+/* 状态切换动画 */
+.show {
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.25s ease;
+  opacity: 1;
+  visibility: visible;
+  height: auto;
+}
+
+.hide {
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  height: 0;
+  overflow: hidden;
+}
+
+/* 自定义模态框样式 */
+.custom-modal {
+  background-color: rgba(15, 19, 26, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.custom-modal-title {
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.custom-modal-content {
+  padding: 16px;
+}
